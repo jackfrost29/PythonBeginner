@@ -1,47 +1,72 @@
-from flask import Flask, request, render_template
-app = Flask(__name__)
+from flask import Flask, request, render_template, redirect, session, abort, flash, url_for
+from flask_wtf import FlaskForm 
+from wtforms import StringField, PasswordField, BooleanField
+from wtforms.validators import InputRequired, Email, Length
+from flask_sqlalchemy  import SQLAlchemy
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'thisissecret'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////home/abidcsedu/PythonBeginner/database.db'
+db = SQLAlchemy(app)
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'
+
+class User(UserMixin ,db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(15), unique=True)
+    email = db.Column(db.String(50), unique=True)
+    password = db.Column(db.String(80))
+
+class LoginForm(FlaskForm):
+    username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)])
+    password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=80)])
+
+class RegisterForm(FlaskForm):
+    email = StringField('email', validators=[InputRequired(), Email(message='Invalid email'), Length(max=50)])
+    username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)])
+    password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=80)])
+
+
+@login_manager.user_loader
+def loadUser(id):
+    return User.query.get(int(id))
 
 @app.route("/")
-@app.route("/<User>")
-def home(User=None):
-    return render_template("user.html", user=User)
-
-@app.route("/login")
-def loginPage():
-    return render_template('login.html')
-
-@app.route("/shopping")
-def showShoppingList():
-    food = ["Cheese", "Burger", "Shwarma"]
-    return render_template("shoppingList.html", food = food)
-
-'''
-@app.route("/profile/<username>")
-def profile(username):
-    return render_template("profile.html", username=username)
+@login_required
+def homePage():
+    return render_template('home.html', name=current_user.username)
 
 
+@app.route('/login', methods=['POST', 'GET'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(username=form.username.data).first()
+        if user:
+            if user.password == form.password.data:
+                login_user(user)
+                return redirect(url_for('homePage'))
+        return '<h1>Invalid username/password</h1>'
 
-@app.route("/beef", methods = ['GET', 'POST'])
-def beef():
-    if request.method == 'POST':
-        return 'You are using POST mehtod'
-    else:
-        return 'You are using GET method'
+    return render_template('login.html', form=form)
+
+    
+@app.route('/signup', methods=['POST', 'GET'])
+def signup():
+    form = RegisterForm()
+    if form.validate_on_submit():
+        new_user = User(username=form.username.data, email=form.email.data, password=form.password.data)
+        db.session.add(new_user)
+        db.session.commit()
+        return '<h1>New user has been created!</h1>'
+    return render_template('signup.html', form=form)
 
 
-@app.route("/tuna")
-def page():
-    return "<h2>Tuna is GOOD</h2>"
-
-
-
-@app.route("/post/<int:postID>")
-def post(postID):
-    return "<h2>The post number is %s</h2>" %postID
-'''
 
 if __name__ == "__main__":
     app.run(debug=True)
 
+    # alhamdulillah it works

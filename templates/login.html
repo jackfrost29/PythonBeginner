@@ -1,9 +1,13 @@
 <!doctype html>
 
-<form>
-    User Name: 
-    <input type="text" name="userName"><br>
-    Password: 
-    <input type="password" name="password"><br>
+<form action="/login" method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.username.label }}
+    {{ form.username }}
+    <br>
+    {{ form.password.label }}
+    {{ form.password }}
+    <br>
     <input type="submit" value="Log In">
+    
 </form>

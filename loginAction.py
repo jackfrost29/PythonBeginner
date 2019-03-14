@@ -7,3 +7,5 @@ form = cgi.FieldStorage()
 name = form.getvalue('userName')
 
 render_template('loginSuccess.html', user=name)
+
+# this class design is illogical and riddiculus
