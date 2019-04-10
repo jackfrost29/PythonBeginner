@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, render_template, redirect, session, abort, flash, url_for
 from flask_wtf import FlaskForm 
 from wtforms import StringField, PasswordField, BooleanField
@@ -9,7 +10,11 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'thisissecret'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://///home/jack/VSCodeProjects/PythonBeginner/database.db'
+
+basedir = os.path.abspath(os.path.dirname(__file__))
+db_uri = 'sqlite:///' + os.path.join(basedir, 'database.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
+
 db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
