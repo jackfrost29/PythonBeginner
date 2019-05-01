@@ -1,6 +1,6 @@
 import os
 from flask import Flask, request, render_template, redirect, session, abort, flash, url_for
-from flask_wtf import FlaskForm 
+from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField
 from wtforms.validators import InputRequired, Email, Length
 from flask_sqlalchemy  import SQLAlchemy
