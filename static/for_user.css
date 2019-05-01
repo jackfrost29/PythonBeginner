@@ -1,3 +1,54 @@
+.admin-body-container{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 15px;
+}
+
+.admin-body-container h3, .admin-notifications h3{
+    text-decoration: underline;
+    font-size: 25px;
+    margin-left: 10px;
+}
+
+.admin-page-marked{
+    width: 50%;
+    background-color: white;
+    margin: 5px;
+}
+
+.admin-notifications{
+    width: 50%;
+    background-color: white;
+    margin: 5px;
+}
+
+.marked-student-element{
+    padding: 5px;
+    margin: 5px;
+    border: 5px solid white;
+    border-radius: 25px;
+    background-color: rgb(189, 186, 177);
+}
+
+.admin-notifications-element{
+    padding: 5px;
+    margin: 5px;
+    border: 5px solid white;
+    border-radius: 25px;
+    background-color: rgb(189, 186, 177);
+}
+
+.buttons{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.buttons button{
+    font-size: 28px;
+    padding: 8px;
+    border-radius: 8px;
+}
+
 
 .profile *{
     margin: 5px auto;
