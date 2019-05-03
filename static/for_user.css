@@ -4,7 +4,7 @@
     margin-top: 15px;
 }
 
-.admin-body-container h3, .admin-notifications h3{
+.admin-body-container h3, .admin-notifications h3, .notifications h3, .history h3{
     text-decoration: underline;
     font-size: 25px;
     margin-left: 10px;
@@ -22,15 +22,7 @@
     margin: 5px;
 }
 
-.marked-student-element{
-    padding: 5px;
-    margin: 5px;
-    border: 5px solid white;
-    border-radius: 25px;
-    background-color: rgb(189, 186, 177);
-}
-
-.admin-notifications-element{
+.marked-student-element, .admin-notifications-element, .user-notification-element, .user-trans-history-element{
     padding: 5px;
     margin: 5px;
     border: 5px solid white;
@@ -54,8 +46,14 @@
     margin: 5px auto;
 }
 
+.user-name{
+    font-size: 30px;
+}
+
 .profile button{
-    font-size: 20px;
+    border-radius: 8px;
+    padding: 8px;
+    font-size: 28px;
     margin-left: 10px;
 }
 
@@ -78,7 +76,7 @@
 .notifications{
     border: 5px solid white;
     width: 28%;
-    background-color: cornsilk;
+    background-color: white;
     float: left;
 }
 
@@ -86,16 +84,8 @@
     border: 5px solid white;
     width: 66%;
     height: 500px;
-    background-color: cornsilk;
-    float: left;
-}
-
-.notification-element{
-    padding: 5px;
-    margin: 5px;
-    border: 5px solid white;
-    border-radius: 25px;
     background-color: white;
+    float: left;
 }
 
 

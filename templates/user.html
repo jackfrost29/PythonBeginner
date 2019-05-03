@@ -5,43 +5,49 @@
     <link rel="stylesheet" type="text/css" href="../static/for_user.css">
 </head>
 
+{{ var }}
+
 <div class="profile">
     <img class="profile-image" src="../static/twitter_profile_pic.png" />
-    <button type="button">New</button>
-    <button type="button">History</button>
-    <button type="button">Notifications</button>
-    <button type="button">Edit Profile</button>
-    <button type="button">Logout</button>
+    <a href="#"><button type="button">Home</button></a>
+    <a href="/transection_page"><button type="button">New Transaction</button></a>
+    <a href="#"><button type="button">Due</button></a>
+    <a href="#"><button type="button">History</button></a>
+    <a href="#"><button type="button">Notifications</button></a>
+    <a href="#"><button type="button">View Profile</button></a>
+    <a href="#"><button type="button">Logout</button></a>
 </div>
 
 <div class="body-container">
-    <div class="user-name">Ahmed Tanvir Siddique</div>
+    <div class="user-name">{{ user['full_name'] }}</div>
     <div class="notification-history">
         <div class="notifications">
-            This is Notification
-            <div class="notification-element">
-                <h4>By: CSEDU</h4>
-                <p>Due payments</p>
+            <h3>Notifications</h3>
+            {% for notification in notifications %}
+            {% if notification['reg_no']==user['reg_no'] and notification['status']=='due' %}
+            <div class="user-notification-element">
+                <h4>{{ notification['sub'] }}</h4>
+                <p>ID: {{ notification['trxid'] }}</p>
             </div>
-            <div class="notification-element">
-                <h4>By: CSEDU</h4>
-                <p>Due payments</p>
-            </div>
-            <div class="notification-element">
-                <h4>By: CSEDU</h4>
-                <p>Due payments</p>
-            </div>
-            <div class="notification-element">
-                <h4>By: CSEDU</h4>
-                <p>Due payments</p>
-            </div>
-            <div class="notification-element">
-                <h4>By: CSEDU</h4>
-                <p>Due payments</p>
-            </div>
+            {% endif %}
+            {% endfor %}
+
         </div>
         <div class="history">
-            This is history
+            <h3>Transaction History</h3>
+            {% for notification in notifications %}
+            {% if notification['reg_no']==user['reg_no'] and notification['payed']!=0 %}
+            <div class="user-trans-history-element">
+                <h4>{{ notification['sub'] }}</h4>
+                <p>TRXID: {{ notification['trxid'] }}</p>
+                <p>Amount: {{ notification['amount'] }}</p>
+                <p>Paid: {{ notification['paid'] }}</p>
+                <p>Remaining: {{ notification['amount']-notification['paid'] }}</p>
+                
+            </div>
+            {% endif %}
+            {% endfor %}
         </div>
     </div>
 </div>
+

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Transection Page</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}">
+</head>
+
+
+
+<body>
+    <div class="transection-form-header">New Transection Form</div>
+    <form class="transection-form" action="/do_transect" method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.id(class="transaction-form-id") }} <br>
+        {{ form.amount(class="transaction-form-amount") }} <br>
+        {{ form.acc_no(class="transaction-form-acount_no") }} <br>
+        {{ form.pin(class="transaction-form-pin") }} <br>
+        <input class="submit-button" type="submit" value="GO!">
+
+    </form>
+</body>

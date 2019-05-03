@@ -8,7 +8,7 @@
     border-radius: 50%;
 }
 
-.login-form-header{
+.login-form-header, .transection-form-header{
     font-size: 40px;
     color: white;
     font-weight: bold;
@@ -29,84 +29,15 @@ body{
     */
 }
 
-.loginform{
+.loginform, .transection-form{
     margin: 0 30%;
 }
 
-.loginform *{
+.loginform *, .transection-form *{
     padding: 14px 18px;
     width: 100%;
     font-size: 20px;
     margin-bottom: 10px;
 }
 
-/*
-.box-1{
-    background-color: #333;
-    color:#ffffff;
 
-    border-right: 5px red solid;
-    border-left: 5px red dotted;
-}
-
-.box-2{
-    border: 3px dotted #333;
-    padding: 20px;
-    margin: 20px 0;
-}
-
-.catagories{
-    border: 1px #ccc solid;
-    padding: 10px;
-    border-radius: 15px;
-}
-
-.catagories h2{
-    text-align: center;
-}
-
-.catagories ul{
-    list-style: square
-}
-
-.catagories li{
-    padding-bottom: 6px;
-    border-bottom: 1px dotted #333;
-    list-style-image: url('image.png')
-}
-
-.container{
-    width: 80%;
-    margin: auto
-}
-
-.box-1 h1{
-    font-family: Tahoma;
-    font-style: italic;
-}
-
-.my-form{
-    padding: 20px;
-    
-}
-
-.my-form .form-group{
-    padding-bottom: 15px;
-}
-
-.my-form label{
-    display: block;
-}
-
-.my-form input[type="text"] .my-form textarea {
-    padding: 8px;
-    width: 100%;
-}
-
-.my-form input[type="submit"]{
-    background-color: #333;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-}
-*/
